@@ -1,3 +1,7 @@
+# Don't commit the following files to git
+# For more information, visit https://help.github.com/ignore-files/
+*.env
+
 # Miscellaneous
 *.class
 *.log
