@@ -29,23 +29,35 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('NBA App'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 96, 180, 201),
+          title: Text('NBA App'),
+          centerTitle: true,
+          bottom: TabBar(
+            tabs: [
+              Tab(
+                icon: Icon(Icons.score),
+                text: 'Scoreboard',
+              ),
+              Tab(
+                icon: Icon(Icons.people),
+                text: 'Teams',
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
           children: [
-            ElevatedButton(
-              onPressed: () => Navigator.push(
-                  context, MaterialPageRoute(builder: (_) => TeamsScreen())),
-              child: Text('View Teams'),
+            AnimatedSwitcher(
+              duration: Duration(microseconds: 500),
+              child: ScoreboardScreen(),
             ),
-            ElevatedButton(
-              onPressed: () => Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => ScoreboardScreen())),
-              child: Text('View Scoreboard'),
+            AnimatedSwitcher(
+              duration: Duration(microseconds: 500),
+              child: TeamsScreen(),
             ),
           ],
         ),
